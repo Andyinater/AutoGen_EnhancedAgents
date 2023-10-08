@@ -45,20 +45,31 @@ lost_messages = messages[:trim_index]
 remaining_messages = messages[trim_index:]
 ```
 
-The trim index splits the chat history per the ratio, with the oldest section (lost_messages) being sent to the Memory Manager Agent (MMA) for processing and appending to the Short-Term Memory (STM), with the newest section (remaining_messages) remaining as the new CC.
+The `trim_index` splits the chat history per the ratio, with the oldest section (`lost_messages`) being sent to the Memory Manager Agent (MMA) for processing and appending to the Short-Term Memory (STM), with the newest section (`remaining_messages`) remaining as the new CC.
 
 The MMA, when presented with the chat section, is prompted:
 
 > Conversation Section to Summarize:\n{lost_messages}\n\n Please make a function call to append_to_short_term_memory and pass in the key points you can extract from the above conversation section.
 
-The MMA will then call `append_to_short_term_memory` and pass in a list of memories meant to capture and significance from the lost_messages.
+The MMA will then call `append_to_short_term_memory` and pass in a list of memories meant to capture any significance from the lost_messages.
 
 ***************
 
 #### Short-Term Memory
 
-The STM behaves in a similar fashion to the CC, in that it has a limit which,
+The STM behaves in a similar fashion to the CC, in that it has a limit which, when exceeded, drives further memory storage functions. When the STM exceeds the limit, a CR (independent of CC CR) is applied such that:
 
+```python
+trim_index = len(STM)*CompressionRatio
+lost_memories = STM[:trim_index]
+remaining_memoriess = STM[trim_index:]
+```
+
+The `trim_index` splits the STM per the ratio, with the oldest section (`lost_memories`) being sent to the MMA for processing and incorporation into the LTM, and the newest section (`remaining_memories`) remaining in the STM.
+
+**************
+
+#### Long-Term Memory
 
 
 
