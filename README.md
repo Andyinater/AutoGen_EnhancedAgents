@@ -21,7 +21,7 @@ The Memory Enabled Agent (MEA) inherits from the [AutoGen](ms autogen link here)
 ## Overview
 
 
-The MEA was designed to provide an easy-to-implement option for using an Agent with dynamic and self-arranged memory within the AutoGen framework. The implemented system was inspired by literature on human memory systems, and as such includes a Working Memory (CC, Chat-Context), Short-Term Memory (STM, via exChat-Context), and a Long-Term Memory (LTM, via exSTM-Context). The CC is a fixed number of messages which, when exceeded, uses a compression ratio (CR_1) to remove some of the oldest messages (FILO) and have them be summarized into the STM. The STM also has a fixed number of memories which, when exceeded, uses a CR (CR_2) to remove some of the oldest memories and integrate them into the LTM. Both summary events are executed by the internal MemoryEnabledAgent_Manager, referred to as the Memory Manager Agent, or MMA.
+The MEA was designed to provide an easy-to-implement option for using an Agent with dynamic and self-arranged memory within the AutoGen framework. The implemented system was inspired by literature on human memory systems, and as such includes a Working Memory (CC, Chat-Context), Short-Term Memory (STM, via exChat-Context), and a Long-Term Memory (LTM, via exSTM-Context). The STM stays affixed to the top of the CC and is excluded from FILO concerns. The CC is a fixed number of messages which, when exceeded, uses a compression ratio (CR_1) to remove some of the oldest messages (FILO) and have them be summarized into the STM. The STM also has a fixed number of memories which, when exceeded, uses a CR (CR_2) to remove some of the oldest memories and integrate them into the LTM. Both summary events are executed by the internal MemoryEnabledAgent_Manager, referred to as the Memory Manager Agent, or MMA.
 
 <a name="MEA_HowItWorks"/>
 
@@ -33,9 +33,25 @@ The MEA was designed to provide an easy-to-implement option for using an Agent w
 
 ### Storing, Shifting, and Summarizing Memories
 
+#### Chat Context
+
 The Chat-Context (CC) exceeding the limit is what drives all memory storage related functions. When the CC exceeds the limit, a Compression Ratio (CR) is applied onto the messages such that:
 
-This sentence uses `$` delimiters to show math inline:  $\sqrt{3x-1}+(1+x)^2$
+```python
+trim_index = len(messages)*CompressionRatio
+lost_messages = messages[:trim_index]
+remaining_messages = messages[trim_index:]
+```
+
+The trim index splits the chat history per the ratio, with the oldest section (lost_messages) being sent to the Memory Manager Agent (MMA) for processing and appending to the Short-Term Memory (STM), with the newest section (remaining_messages) remaining as the new CC.
+
+The MMA, when presented with the chat section, is prompted:
+
+> Conversation Section to Summarize:\n{lost_messages}\n\n Please make a function call to append_to_short_term_memory and pass in the key points you can extract from the above conversation section.
+
+The MMA will then call `append_to_short_term_memory` and pass in a list of memories meant to capture and significance from the lost_messages.
+
+#### Short-Term Memory
 
 ## Features
 
