@@ -33,6 +33,11 @@ The MEA was designed to provide an easy-to-implement option for using an Agent w
 
 ### Storing, Shifting, and Summarizing Memories
 
+The Chat-Context (CC) exceeding the limit is what drives all memory storage related functions. When the CC exceeds the limit, a Compression Ratio (CR) is applied onto the messages such that:
+
+When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are 
+$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+
 ## Features
 
 - Memory-Enabled Assistant (MEA) capable of maintaining short-term and long-term memory.
