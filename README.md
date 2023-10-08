@@ -73,6 +73,9 @@ The `trim_index` splits the STM per the ratio, with the oldest section (`lost_me
 
 
 
+# ToDO To Be Bug Free
+- Fix 'User' and the actual user name not being consistent.
+
 # ToDo To Make Efficient
 
 - Better prompts for better factoid generation/storage. Sometimes it still does sentences or other copy/paste.
