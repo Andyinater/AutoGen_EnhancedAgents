@@ -33,6 +33,8 @@ The MEA was designed to provide an easy-to-implement option for using an Agent w
 
 ### Storing, Shifting, and Summarizing Memories
 
+*********************
+
 #### Chat Context
 
 The Chat-Context (CC) exceeding the limit is what drives all memory storage related functions. When the CC exceeds the limit, a Compression Ratio (CR) is applied onto the messages such that:
@@ -51,7 +53,42 @@ The MMA, when presented with the chat section, is prompted:
 
 The MMA will then call `append_to_short_term_memory` and pass in a list of memories meant to capture and significance from the lost_messages.
 
+***************
+
 #### Short-Term Memory
+
+The STM behaves in a similar fashion to the CC, in that it has a limit which,
+
+
+
+
+# ToDo To Make Efficient
+
+- Better prompts for better factoid generation/storage. Sometimes it still does sentences or other copy/paste.
+- Automation of CC, STM, and LTM function calls, after ensuring minimal/zero waste.
+- Code TODOs.
+
+# ToDo To Make Better
+
+- Create a self reflection cycle to allow memory compression/reformating outside of CC driven demands. Make it accessible to the MEA.
+- Create a context-switch cycle, to allow the STM to be reformated from CC/STM/LTM such that it is best prepared for the next task.
+- Create a system to allow MEA to adjust STM and LTM-lookup for specific agent - either through more files or better control of entity names in STM and LTM entries.
+- Devise a methodology and rationale for splitting LTM into related sections, to allow a larger total LTM but with less cost per LTM lookup if in a properly related section.
+- Test and refine methods to achieve optimal performance and efficiency when using the agent in other activities outside of user chat (coding groups, media creation, cross-group ideation, etc...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Features
 
