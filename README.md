@@ -35,7 +35,7 @@ The MEA was designed to provide an easy-to-implement option for using an Agent w
 
 The Chat-Context (CC) exceeding the limit is what drives all memory storage related functions. When the CC exceeds the limit, a Compression Ratio (CR) is applied onto the messages such that:
 
-This sentence uses `$` delimiters to show math inline:  $ \sqrt{3x-1}+(1+x)^2 $
+This sentence uses `$` delimiters to show math inline:  $\sqrt{3x-1}+(1+x)^2$
 
 ## Features
 
