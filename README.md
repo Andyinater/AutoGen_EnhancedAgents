@@ -8,6 +8,7 @@ This repository holds enhanced Agents, built for the Microsoft AutoGen Framework
  - [How it Works](#MEA_HowItWorks)
    - [Storing, Shifting, and Summarizing Memories](#MEA_SSSM)
    - [Retrieving Memories](#MEA_RM)
+   - [Setting Memory Parameters](#MEA_SMP)
  - [Getting Started](#MEA_GettingStarted)
    - [Controlling Execution](#MEA_ControllingExecution)
 
@@ -84,6 +85,10 @@ The LTM is the final destination for all memories. There are no checks for max l
 
 Memories are retrieved from the LTM via a function call from the Memory Enabled Agent (MEA). The MEA will pass a `hint` to the MMA, that is to describe what information is being requested. The MMA is to return an answer to the query - not a copy-paste of the existing memory. This is intentional to allow the blurring/combining of seperate memories, if relevant.
 
+***********
+
+<a name="MEA_RM"/>
+
 ### Setting Memory Parameters
 
 The following default memory parameters have been used:
@@ -101,6 +106,8 @@ DEFAULT_MAX_CONVO_LENGTH = 10
 # Proportion to cut chat off (0.9 drops 9 out of 10 chats after exceeding limit, 0.1 drops 1 out of 10 chats after exceeding limit)
 DEFAULT_COMPRESSION_RATIO_CHAT = 0.8
 ```
+
+One should carefully consider the implications of changing these values. For any flow, there may be a balance to achieving performance with minimal tokens/requests, but it is somewhat case-by-case. There have been many precautions taken to prevent token overflow, in an attempt to lower costs. In reality, this agent is likely to have a higher minimum-token-useage. It is when discussions become long, or have the potential to become long, that the MEA may prevent an attractive solution.
 
 
 
