@@ -3,6 +3,7 @@ This repository holds enhanced Agents, built for the Microsoft AutoGen Framework
 
 
 # Table of Contents  
+**************************
 [MemoryEnabledAgent](#MEA)
  - [Overview](#MEA_Overview)
  - [How it Works](#MEA_HowItWorks)
@@ -10,7 +11,7 @@ This repository holds enhanced Agents, built for the Microsoft AutoGen Framework
    - [Retrieving Memories](#MEA_RM)
  - [Getting Started](#MEA_GettingStarted)
    - [Controlling Execution](#MEA_ControllingExecution)
-
+*****************************
 
 <a name="MEA"/>
 
