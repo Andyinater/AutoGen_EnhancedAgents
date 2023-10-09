@@ -30,7 +30,7 @@ The MEA was designed to provide an easy-to-implement option for using an Agent w
 
 ## How it Works
 
-[Diagram Here]
+![Diagram of Memory Flow][MemoryFlow.png]
 
 <a name="MEA_SSSM"/>
 
