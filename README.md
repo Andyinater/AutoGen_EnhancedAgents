@@ -84,6 +84,8 @@ The LTM is the final destination for all memories. There are no checks for max l
 
 Memories are retrieved from the LTM via a function call from the Memory Enabled Agent (MEA). The MEA will pass a `hint` to the MMA, that is to describe what information is being requested. The MMA is to return an answer to the query - not a copy-paste of the existing memory. This is intentional to allow the blurring/combining of seperate memories, if relevant.
 
+************
+
 <a name="MEA_GettingStarted"/>
 
 ## Getting Started
