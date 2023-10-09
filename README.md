@@ -107,7 +107,7 @@ DEFAULT_MAX_CONVO_LENGTH = 10
 DEFAULT_COMPRESSION_RATIO_CHAT = 0.8
 ```
 
-One should carefully consider the implications of changing these values. For any flow, there may be a balance to achieving performance with minimal tokens/requests, but it is somewhat case-by-case. There have been many precautions taken to prevent token overflow, in an attempt to lower costs. In reality, this agent is likely to have a higher minimum-token-useage. It is when discussions become long, or have the potential to become long, that the MEA may prevent an attractive solution.
+One should carefully consider the implications of changing these values. For any flow, there may be a balance to achieving performance with minimal tokens/requests, but it is somewhat case-by-case. There have been many precautions taken to prevent token overflow, in an attempt to lower costs. In reality, this agent is likely to have a higher minimum-token-useage. It is when discussions become long, or have the potential to become long, that the MEA may present an attractive solution.
 
 
 
