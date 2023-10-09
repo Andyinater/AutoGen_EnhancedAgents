@@ -17,7 +17,7 @@ This repository holds enhanced Agents, built for the Microsoft AutoGen Framework
 # MemoryEnabledAgent 
 
 
-The Memory Enabled Agent (MEA) inherits from the [AutoGen](https://github.com/microsoft/autogen#autogen) AssistantAgent class, with changes and features that endow the agent with a persistant, autonomous, and token-stable method of conversation, memory storage, and memory retrieval. This work is inspired by, and extends from, lessons and experiences from developing [AutoGen_MemoryManager](link me) and [AutoGen_IterativeCoding](link me), as well as discussions within the AutoGen community. This work represents a continuation in the efforts to develop a more generally-powerful AI Agent. Feedback and Collaboration is strongly welcomed and encouraged.
+The Memory Enabled Agent (MEA) inherits from the [AutoGen](https://github.com/microsoft/autogen#autogen) AssistantAgent class, with changes and features that endow the agent with a persistant, autonomous, and token-stable method of conversation, memory storage, and memory retrieval. This work is inspired by, and extends from, lessons and experiences from developing [AutoGen_MemoryManager](https://github.com/Andyinater/AutoGen_MemoryManager#autogen_memorymanager) and [AutoGen_IterativeCoding](https://github.com/Andyinater/AutoGen_IterativeCoding), as well as discussions within the AutoGen community. This work represents a continuation in the efforts to develop a more generally-powerful AI Agent. Feedback and Collaboration is strongly welcomed and encouraged.
 
 <a name="MEA_Overview"/>
 
@@ -90,7 +90,7 @@ Memories are retrieved from the LTM via a function call from the Memory Enabled 
 
 ## Getting Started
 
-The author assumes you already have [AutoGen](link to MS AutoGen install) installed and running on your system. If you would like to simply use the system as a conversational agent, ensure `main.py` has your API configs filled, and is in the same directory as `EnhancedAgents.py`. You can run it from command line via `python main.py`.
+The author assumes you already have [AutoGen](https://github.com/microsoft/autogen#installation) installed and running on your system. If you would like to simply use the system as a conversational agent, ensure `main.py` has your API configs filled, and is in the same directory as `EnhancedAgents.py`. You can run it from command line via `python main.py`.
 
 <a name="MEA_ControllingExecution"/>
 
