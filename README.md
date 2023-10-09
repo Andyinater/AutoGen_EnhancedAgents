@@ -8,6 +8,8 @@ This repository holds enhanced Agents, built for the Microsoft AutoGen Framework
  - [How it Works](#MEA_HowItWorks)
    - [Storing, Shifting, and Summarizing Memories](#MEA_SSSM)
    - [Retrieving Memories](#MEA_RM)
+ - [Getting Started](#MEA_GettingStarted)
+   - [Controlling Execution](#MEA_ControllingExecution)
 
 
 <a name="MEA"/>
