@@ -133,6 +133,10 @@ It may take a while to get used to how to run it. Hopefully this skill will not 
 
 ************
 
+The documentation in the current state is incomplete, and represents a work in progress.
+
+************
+
 
 # ToDO To Be Bug Free
 - Fix 'User' and the actual user name not being consistent.
