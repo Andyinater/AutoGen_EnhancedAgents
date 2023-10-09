@@ -8,7 +8,7 @@ This repository holds enhanced Agents, built for the Microsoft AutoGen Framework
  - [How it Works](#MEA_HowItWorks)
    - [Storing, Shifting, and Summarizing Memories](#MEA_SSSM)
    - [Retrieving Memories](#MEA_RM)
-   - [Setting Memory Parameters](#MEA_SMP)
+   - [Setting Memory Parameters](#MEA_SetMemParam)
  - [Getting Started](#MEA_GettingStarted)
    - [Controlling Execution](#MEA_ControllingExecution)
 
@@ -87,7 +87,7 @@ Memories are retrieved from the LTM via a function call from the Memory Enabled 
 
 ***********
 
-<a name="MEA_RM"/>
+<a name="MEA_SetMemParam"/>
 
 ### Setting Memory Parameters
 
