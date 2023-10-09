@@ -71,6 +71,12 @@ The `trim_index` splits the STM per the ratio, with the oldest section (`lost_me
 
 #### Long-Term Memory
 
+The LTM is the final destination for all memories. There are no checks for max length. The MMA is *supposed* to maintain a minimal list, but some tuning may be required to achieve optimal performance.
+
+<a name="MEA_GettingStarted"/>
+
+## Getting Started
+
 
 
 # ToDO To Be Bug Free
