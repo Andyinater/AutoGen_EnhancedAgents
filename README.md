@@ -15,7 +15,7 @@ This repository holds enhanced Agents, built for the Microsoft AutoGen Framework
 # MemoryEnabledAgent 
 
 
-The Memory Enabled Agent (MEA) inherits from the [AutoGen](ms autogen link here) AssistantAgent class, with changes and features that endow the agent with a persistant, autonomous, and token-stable method of conversation, memory storage, and memory retrieval. This work is inspired by, and extends from, lessons and experiences from developing [AutoGen_MemoryManager](link me) and [AutoGen_IterativeCoding](link me), as well as discussions within the AutoGen community. This work represents a continuation in the efforts to develop a more generally-powerful AI Agent. Feedback and Collaboration is strongly welcomed and encouraged.
+The Memory Enabled Agent (MEA) inherits from the [AutoGen](https://github.com/microsoft/autogen#autogen) AssistantAgent class, with changes and features that endow the agent with a persistant, autonomous, and token-stable method of conversation, memory storage, and memory retrieval. This work is inspired by, and extends from, lessons and experiences from developing [AutoGen_MemoryManager](link me) and [AutoGen_IterativeCoding](link me), as well as discussions within the AutoGen community. This work represents a continuation in the efforts to develop a more generally-powerful AI Agent. Feedback and Collaboration is strongly welcomed and encouraged.
 
 <a name="MEA_Overview"/>
 
@@ -86,18 +86,19 @@ Memories are retrieved from the LTM via a function call from the Memory Enabled 
 
 The author assumes you already have [AutoGen](link to MS AutoGen install) installed and running on your system. If you would like to simply use the system as a conversational agent, ensure `main.py` has your API configs filled, and is in the same directory as `EnhancedAgents.py`. You can run it from command line via `python main.py`.
 
+<a name="MEA_ControllingExecution"/>
+
 ### Controlling Execution
 
 Currently, many of the memory process require the user to either `exit` or `auto-reply` at the right time to the right agent. The simple guide is:
 
-1. Any function requests from the MEA should be allowed to execute via `auto-reply`.
-2. Any other conversations, between the MMA and `function_agent_LTM` or `function_agent_LTM` User Proxy Agents should be replied to with 'exit' - failure to do this can cause repetitive memory writing/compression/API calls at worst, or corrupt the conversation at best. Please be mindful - this functionality is attempting to be resolved.
+1. Any function requests from the MEA should be allowed to execute via `auto-reply`. These should just be requests to LTM for info.
+2. Any other conversations, between the MMA and `function_agent_LTM` or `function_agent_LTM` User Proxy Agents should have function calls receiving `auto-reply`, but after that reoky with 'exit'. Again - the other agents related to the MMA should be allowed to make their function call, but after that you must exit the conversation - failure to do this can cause repetitive memory writing/compression/API calls at worst, or corrupt the conversation at best. Please be mindful - this functionality is attempting to be resolved.
 
-### Initializing the Memory Agent
+It may take a while to get used to how to run it. Hopefully this skill will not be required in future updates.
 
-This can be done like so:
 
-`mem_agent = MemoryEnabledAgent("Cortana", gpt_config)` where `gpt_config` is the dict containing `seed`, `temperature`, `config_list`, and `request_timeout` fields, among potentially others. Please refer to `main.py`
+************
 
 
 # ToDO To Be Bug Free
