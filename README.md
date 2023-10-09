@@ -1,5 +1,5 @@
 # AutoGen_EnhancedAgents
-This repository holds enhanced Agents, built for the Microsoft AutoGen Framework. Debuting with a MemoryEnabledAgent with improvements in context/token control, portability, and Plug-and-Play functionality. 
+This repository holds enhanced Agents, built for the Microsoft AutoGen Framework. Debuting with a MemoryEnabledAgent, with improvements in context/token control, portability, and Plug-and-Play functionality. 
 
 
 # Table of Contents  
