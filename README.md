@@ -77,7 +77,9 @@ The `trim_index` splits the STM per the ratio, with the oldest section (`lost_me
 The LTM is the final destination for all memories. There are no checks for max length. The MMA is *supposed* to maintain a minimal list, but some tuning may be required to achieve optimal performance.
 
 *********
+
 <a name="MEA_RM"/>
+
 ### Retrieving Memories
 
 Memories are retrieved from the LTM via a function call from the Memory Enabled Agent (MEA). The MEA will pass a `hint` to the MMA, that is to describe what information is being requested. The MMA is to return an answer to the query - not a copy-paste of the existing memory. This is intentional to allow the blurring/combining of seperate memories, if relevant.
