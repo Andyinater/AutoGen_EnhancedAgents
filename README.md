@@ -7,6 +7,7 @@ This repository holds enhanced Agents, built for the Microsoft AutoGen Framework
  - [Overview](#MEA_Overview)
  - [How it Works](#MEA_HowItWorks)
    - [Storing, Shifting, and Summarizing Memories](#MEA_SSSM)
+   - [Retrieving from Long-Term Memory](#MEA_RfLTM)
 
 
 <a name="MEA"/>
@@ -73,10 +74,30 @@ The `trim_index` splits the STM per the ratio, with the oldest section (`lost_me
 
 The LTM is the final destination for all memories. There are no checks for max length. The MMA is *supposed* to maintain a minimal list, but some tuning may be required to achieve optimal performance.
 
+*********
+
+### Retrieving Memories
+
+Memories are retrieved from the LTM via a function call from the Memory Enabled Agent (MEA)
+
 <a name="MEA_GettingStarted"/>
 
 ## Getting Started
 
+The author assumes you already have [AutoGen](link to MS AutoGen install) installed and running on your system. If you would like to simply use the system as a conversational agent, ensure `main.py` has your API configs filled, and is in the same directory as `EnhancedAgents.py`. You can run it from command line via `python main.py`.
+
+### Controlling Execution
+
+Currently, many of the memory process require the user to either `exit` or `auto-reply` at the right time to the right agent. The simple guide is:
+
+1. Any function requests from the MEA should be allowed to execute via `auto-reply`.
+2. Any other conversations, between the MMA and `function_agent_LTM` or `function_agent_LTM` User Proxy Agents should be replied to with 'exit' - failure to do this can cause repetitive memory writing/compression/API calls at worst, or corrupt the conversation at best. Please be mindful - this functionality is attempting to be resolved.
+
+### Initializing the Memory Agent
+
+This can be done like so:
+
+`mem_agent = MemoryEnabledAgent("Cortana", gpt_config)` where `gpt_config` is the dict containing `seed`, `temperature`, `config_list`, and `request_timeout` fields, among potentially others. Please refer to `main.py`
 
 
 # ToDO To Be Bug Free
