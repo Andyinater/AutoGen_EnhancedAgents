@@ -84,6 +84,26 @@ The LTM is the final destination for all memories. There are no checks for max l
 
 Memories are retrieved from the LTM via a function call from the Memory Enabled Agent (MEA). The MEA will pass a `hint` to the MMA, that is to describe what information is being requested. The MMA is to return an answer to the query - not a copy-paste of the existing memory. This is intentional to allow the blurring/combining of seperate memories, if relevant.
 
+### Setting Memory Parameters
+
+The following default memory parameters have been used:
+
+```python
+# Max number of short term memories before initiating compression to long
+DEFAULT_SHORT_TERM_MEMORY_LIMIT = 10
+
+# Proportion to cut short term memory off (0.9 drops 9 out of 10 memories after exceeding STM limit, 0.1 drops 1 out of 10 memories after exceeding STM limit)
+DEFAULT_COMPRESSION_RATIO_STM = 0.8
+
+# Max convo length before the end starts falling off, in number of messages. User and AI both count, so minimum is 2.
+DEFAULT_MAX_CONVO_LENGTH = 10
+
+# Proportion to cut chat off (0.9 drops 9 out of 10 chats after exceeding limit, 0.1 drops 1 out of 10 chats after exceeding limit)
+DEFAULT_COMPRESSION_RATIO_CHAT = 0.8
+```
+
+
+
 ************
 
 <a name="MEA_GettingStarted"/>
