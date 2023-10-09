@@ -25,6 +25,7 @@ The Memory Enabled Agent (MEA) inherits from the [AutoGen](https://github.com/mi
 
 The MEA was designed to provide an easy-to-implement option for using an Agent with dynamic and self-arranged memory within the AutoGen framework. The implemented system was inspired by literature on human memory systems, and hence, includes a Working Memory (CC, Chat-Context), Short-Term Memory (STM, via exChat-Context), and a Long-Term Memory (LTM, via exSTM-Context). The STM stays affixed to the top of the CC and is excluded from FILO concerns. The CC is a fixed number of messages which, when exceeded, uses a compression ratio (CR_1) to remove some of the oldest messages (FILO) and have them be summarized into the STM. The STM also has a fixed number of memories which, when exceeded, uses a CR (CR_2) to remove some of the oldest memories and integrate them into the LTM. Both summary events are executed by the internal MemoryEnabledAgent_Manager, referred to as the Memory Manager Agent, or MMA.
 
+
 <a name="MEA_HowItWorks"/>
 
 ## How it Works
