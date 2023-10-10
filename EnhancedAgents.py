@@ -12,7 +12,7 @@ class MemoryEnabledAgent(AssistantAgent):
     DEFAULT_MEM_AGENT_MESSAGE = """
     
     Be sure to modulate your discussion by what you remember about {sender}.
-    If something is missing that you should know, try checking your memory before responding by calling lookup_from_long_term_memory
+    If something is missing that you should know, try checking your memory using lookup_from_long_term_memory and pass in a hint describing what you are trying to remember.
     If you are asked what can you remember, it would be good to call lookup_from_long_term_memory.
     """
     
@@ -58,7 +58,7 @@ class MemoryEnabledAgent(AssistantAgent):
                             "properties": {
                                 "hint": {
                                     "type": "string",
-                                    "description": "A hint or description of what information is being attempted to be retrieved",
+                                    "description": "A hint or description of what information is being attempted to be retrieved.",
                                 },
                             },
                             "required": ["hint"],
@@ -391,27 +391,36 @@ class MemoryEnabledAgent_Manager(AssistantAgent):
         )
         
         # These are dummy user_agents to allow MMA code execution. There needs to be two as conversation histories were cross-contaminating on consequetive function calls.
-        # TODO: get all memory function execution and chat closing to be automated
         self.function_agent_LTM = UserProxyAgent(
             name="user_proxy_for_LTM",
-            human_input_mode="ALWAYS",
+            is_termination_msg= self.is_mem_termination_msg,
+            human_input_mode="NEVER",
             max_consecutive_auto_reply=1,
             code_execution_config={"work_dir": "_test"},
             function_map={"rewrite_memory": self.rewrite_memory}
             )
         self.function_agent_STM = UserProxyAgent(
             name="user_proxy_for_STM",
-            human_input_mode="TERMINATE",
+            is_termination_msg= self.is_mem_termination_msg,
+            human_input_mode="NEVER",
             max_consecutive_auto_reply=1,
             code_execution_config={"work_dir": "_test"},
             function_map={"append_to_short_term_memory": self.parent_agent.append_to_short_term_memory}
             )
-
+    
+    # Function to automate LTM/STM operations
+    def is_mem_termination_msg(self, msg):
+        if msg.get("content") != None:
+            if msg.get("content", "").rstrip().endswith("TERMINATE"):
+                return True
+        return False
+        
+    
     # Present the memory manager with the lost messages to summarize into parent agents short term memory. Will call append_to_short_term_memory in parent MEA and pass in memories.
     def process_chat_section(self, lost_messages):
         self.function_agent_STM.initiate_chat(
             self,
-            message=f"Conversation Section to Summarize:\n{lost_messages}\n\n Please make a function call to append_to_short_term_memory and pass in the key points you can extract from the above conversation section."
+            message=f"Conversation Section to Summarize:\n{lost_messages}\n\n Please make a function call to append_to_short_term_memory and pass in the key points you can extract from the above conversation section. Do not use 'User' or 'Assistant' - replace 'User' with {self.parent_agent.sender_agent.name}, and replace 'Assistant' with 'I'."
         )      
     
     # Return the full long term memory in list form
@@ -447,7 +456,7 @@ class MemoryEnabledAgent_Manager(AssistantAgent):
     def incorporate_memories(self, memories):
         self.function_agent_LTM.initiate_chat(
             self,
-            message=f"Full Long Term Memory:\n{self.read_long_term_memory()}\n\nNew memory or memories to incorporate:\n{'|'.join(memories)} \n\n Please make a function call to rewrite_memory and pass in the reconfigured long term memory which incorporates the old with the new. It is better to modify memories in place to capture new information instead of always making the memory longer; only make it longer if necessary, but otherwise do your best to condense, reorganize, and rewrite."
+            message=f"Full Long Term Memory:\n{self.read_long_term_memory()}\n\nNew memory or memories to incorporate:\n{'|'.join(memories)} \n\n Please make a function call to rewrite_memory and pass in the reconfigured long term memory which incorporates the old with the new. It is better to modify memories in place to capture new information instead of always making the memory longer; only make it longer if necessary, but otherwise do your best to condense, reorganize, and rewrite. The goal is for the Long Term Memory you are writing to be as entity dense as possible."
         )
         return True
     
@@ -465,10 +474,10 @@ class MemoryEnabledAgent_Manager(AssistantAgent):
     def lookup_from_long(self, hint):
         self.function_agent_LTM.initiate_chat(
             self,
-            message=f"Full Long Term Memory:\n{self.read_long_term_memory()}\n\nWhat do I know about: {hint}?\n\n Respond in chat - Do not make a function call."
+            message=f"Full Long Term Memory:\n{self.read_long_term_memory()}\n\nWhat do I know about: {hint}?\n\n Respond in chat - Do not make a function call. Replace 'you' with {self.parent_agent.sender_agent.name}"
         )
         # Send back the response to the conversing agent. Due to current flow and manual exiting, '-3' is magic number that gets original MMA response to question.
-        return self.chat_messages[self.function_agent_LTM][-1]
+        return self.chat_messages[self.function_agent_LTM][-3]
 
 
 
