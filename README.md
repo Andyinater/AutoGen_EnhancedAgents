@@ -123,12 +123,7 @@ The author assumes you already have [AutoGen](https://github.com/microsoft/autog
 
 ### Controlling Execution
 
-Currently, many of the memory process require the user to either `exit` or `auto-reply` at the right time to the right agent. The simple guide is:
-
-1. Any function requests from the MEA should be allowed to execute via `auto-reply`. These should just be requests to LTM for info.
-2. Any other conversations, between the MMA and `function_agent_LTM` or `function_agent_LTM` User Proxy Agents should have function calls receiving `auto-reply`, but after that reply with 'exit'. Again - the other agents related to the MMA should be allowed to make their function call, but after that you must exit the conversation - failure to do this can cause repetitive memory writing/compression/API calls at worst, or corrupt the conversation. Please be mindful - this functionality is attempting to be resolved.
-
-It may take a while to get used to how to run it. Hopefully this skill will not be required in future updates.
+You can converse with the agent normally, just use auto-reply for memory lookup requests.
 
 
 ************
