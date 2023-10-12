@@ -477,7 +477,7 @@ class MemoryEnabledAgent_Manager(AssistantAgent):
             message=f"Full Long Term Memory:\n{self.read_long_term_memory()}\n\nWhat do I know about: {hint}?\n\n Respond in chat - Do not make a function call. Replace 'you' with {self.parent_agent.sender_agent.name}"
         )
         # Send back the response to the conversing agent. Due to current flow and manual exiting, '-3' is magic number that gets original MMA response to question.
-        return self.chat_messages[self.function_agent_LTM][-3]
+        return self.chat_messages[self.function_agent_LTM][-1]
 
 
 
